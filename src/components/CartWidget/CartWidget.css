@@ -1,0 +1,31 @@
+.header__actions-icon {
+    margin: 5px 5px 0;
+    font-size: 24px;
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+.indicator__count.indicator__count--active {
+    display: inline-block;
+    -webkit-animation: revealCount .25s;
+    animation: revealCount .25s;
+}
+
+
+.indicator__count {
+    background: #1fc157;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    line-height: 16px;
+    text-align: center;
+    font-size: 1rem;
+    color: #fff;
+}
