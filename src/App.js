@@ -6,6 +6,7 @@ import Navbar from "./components/NavBar/NavBar";
 import CartWidget from "./components/CartWidget/CartWidget";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 
+
 //create a list of products that
 //will be used to populate the item list
 const products = [
@@ -45,6 +46,7 @@ function App() {
         </Navbar>
       </header>
       <ItemListContainer items={products} />
+      
     </div>
   );
 }

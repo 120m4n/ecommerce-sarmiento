@@ -1,6 +1,14 @@
 import React from 'react';
 
+import ItemCount from "../ItemCount/ItemCount";
+
 const ItemListContainer = ({items}) => {
+    
+
+    const onAdd = (cant) => {
+        console.log(cant);
+    }
+
     return (
         <div className="ItemListContainer">
             <ul className="ItemList">
@@ -12,6 +20,8 @@ const ItemListContainer = ({items}) => {
                     )
                 })}
             </ul>
+
+            <ItemCount stock={5} initial={1} onAdd={onAdd} />
             
         </div>
     );
