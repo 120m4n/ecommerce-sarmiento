@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Item = ({producto}) => {
-    console.log(producto.title);
+    // console.log(producto.title);
     return (
             <div className="card text-center w-25 mb-3">
                 <div className='card-header'> {producto.title}</div>

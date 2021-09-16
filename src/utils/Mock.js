@@ -12,4 +12,9 @@ export const getFetch = new Promise((resolve, reject) => {
     }, 2000);
 })
 
+export const getFetchById = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve(productos[0]);
+    }, 2000);
+})   
 

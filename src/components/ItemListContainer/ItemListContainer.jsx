@@ -6,7 +6,7 @@ import ItemCount from "../ItemCount/ItemCount";
 import ItemList from "../ItemList/ItemList";
 
 
-console.log(getFetch);
+// console.log(getFetch);
 
 
 const ItemListContainer = ({greeting}) => {
