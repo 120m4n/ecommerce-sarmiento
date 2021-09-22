@@ -1,25 +1,33 @@
 import React from 'react';
-import { getFetchById } from '../../utils/Mock';
+import { getFetch } from '../../utils/Mock';
 import {useState, useEffect} from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
+import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = ({greeting}) => {
     const [item, setItem] =useState({}); //<--ojo que solo pasa un objeto
     const [loading, setLoading] = useState(true);
+    const {idProducto} = useParams();
 
     useEffect(() => {
-        getFetchById
-        .then(res => {
-            setItem(res);
-        })
-        .catch(err => { console.log(err) })
-        .finally(() => setLoading(false));
-    }, []);
+        if (idProducto) {	
+            // console.log('idProducto', idProducto);
+            // console.log(typeof idProducto);
+            getFetch
+            .then(res => {
+                const itemFiltrado = res.filter(producto => producto.id === parseInt(idProducto));
+                // console.log(itemFiltrado);
+                setItem(itemFiltrado[0]);
+            })
+            .catch(err => { console.log(err) })
+            .finally(() => setLoading(false));
+
+        }
+    }, [idProducto]);
     
     return (
-        <div>
-            <h1>{greeting}</h1>
-            {loading ? <h1>Cargando Detail...</h1> : <ItemDetail item={item} />}
+        <div className="container">
+            {loading ? <h1>Cargando Detalle Item...</h1> : item && <ItemDetail item={item} />}
         </div>
     );
 }

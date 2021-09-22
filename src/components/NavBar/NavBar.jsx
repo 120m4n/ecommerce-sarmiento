@@ -1,8 +1,9 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
+import CartWidget from "../CartWidget/CartWidget";
 
 
 
@@ -11,32 +12,26 @@ function NavBar(props) {
         <>
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#home">
-                        <img
-                        alt="logotipo empresa"
-                        src={props.logo}
-                        width="30"
-                        height="30"
-                        className="d-inline-block align-top"
-                        />{' '}
-                        Ecommerce
-                    </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
+                    <Link to="/">
+                        <Navbar.Brand>
+                            <img
+                            alt="logotipo empresa"
+                            src={props.logo}
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                            />{' '}
+                            CatStore
+                        </Navbar.Brand>
+                    </Link>
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Inicio</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
-                        <NavDropdown title="Productos" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Producto A1</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Producto A2</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Producto A3</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Producto B1</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.5">Producto B2</NavDropdown.Item>
-                        </NavDropdown>
+                        <Nav.Link as={Link} to="/categoria/arena">Arena</Nav.Link>
+                        <Nav.Link as={Link} to="/categoria/comida">Comida</Nav.Link>
+                        <Nav.Link as={Link} to="/categoria/juguetes">Juguetes</Nav.Link>
                     </Nav>
-                    </Navbar.Collapse>
-                    { props.children}
+                    <Link to="/cart">
+                        <CartWidget count={4} />
+                    </Link>
                 </Container>
             </Navbar>   
         </>

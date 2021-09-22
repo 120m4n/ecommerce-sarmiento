@@ -1,22 +1,26 @@
 import React from 'react';
+import ItemCount from '../ItemCount/ItemCount';
 
 const ItemDetail = ({item}) => {
     return (
-        <>
-         {/* <h2>{item.id}</h2>  
-         <h2>{item.title}</h2> 
-         <h2>{item.description}</h2>    */}
-        <div className="card text-center w-25 mb-3">
-            <div className='card-header'> {item.title}</div>
-            <div className="card-body">
-                <img src={item.pictureUrl} className="img-thumbnail" alt=""/>
-                <p>{item.description}</p>
-            </div>
-            <div className="card-footer">
-                <button className="btn btn-primary btn-block" onClick={()=> console.log('click')}>Detalles</button>
+
+        <div className="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div className="card text-center mt-3 m-3 m-auto">
+                <div className='card-header'> {item.title}</div>
+                <div className="card-body">
+                    <img src={item.pictureUrl} className="img-thumbnail" alt=""/>
+                    <p className="card-text">{item.description}</p>
+                </div>
+                <div>
+                    <ItemCount stock={5} initial={1}  />
+                </div>
+
+                {/* <div className="card-footer">
+                    <button className="btn btn-primary btn-block" onClick={()=> console.log('click')}>Agrregar al carrito</button>
+                </div> */}
             </div>
         </div>
-        </>
+     
     );
 }
 
