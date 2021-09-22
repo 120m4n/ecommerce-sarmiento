@@ -1,4 +1,5 @@
 proyecto de e-commerce para curso de react de Coder House
+![Alt Text](./entrega_intermedia.gif)
 
 
 # Getting Started with Create React App
