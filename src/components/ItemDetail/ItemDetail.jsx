@@ -1,7 +1,25 @@
 import React from 'react';
 import ItemCount from '../ItemCount/ItemCount';
+import { Link } from 'react-router-dom';
+
+const InputCount = () => {
+    
+    return (
+        <Link to={`/cart/`}>
+            <button className="btn btn-outline-primary" onClick={()=> {console.log('cart')}}>Terminar mi Compra </button>
+        </Link>
+    );
+}
 
 const ItemDetail = ({item}) => {
+    const [itemsCart, setItemsCart] = React.useState(0);
+    const [inCart, setinCart] = React.useState(false);
+
+    const handleOnAdd = (value) => {
+        setinCart(true);
+        setItemsCart(itemsCart + 1);
+    };
+
     return (
 
         <div className="col-12 col-sm-12 col-md-6 col-lg-4">
@@ -12,12 +30,14 @@ const ItemDetail = ({item}) => {
                     <p className="card-text">{item.description}</p>
                 </div>
                 <div>
-                    <ItemCount stock={5} initial={1}  />
+                {   inCart ? 
+                    <InputCount /> 
+                    :
+                    <ItemCount stock={5} initial={1} onAdd={handleOnAdd} />
+                 }
                 </div>
 
-                {/* <div className="card-footer">
-                    <button className="btn btn-primary btn-block" onClick={()=> console.log('click')}>Agrregar al carrito</button>
-                </div> */}
+
             </div>
         </div>
      
