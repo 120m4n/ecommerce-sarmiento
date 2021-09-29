@@ -1,56 +1,41 @@
 import React from 'react';
-import { getFetch } from '../../utils/Mock';
+// import { getFetch } from '../../utils/Mock';
 import {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import Loading from '../../utils/Loading';
 
 // import ItemCount from "../ItemCount/ItemCount";
 import ItemList from "../ItemList/ItemList";
+import { getItemList } from '../../services/Firebase';
 
 
 
-// console.log(getFetch);
-
-
-const ItemListContainer = ({greeting}) => {
+const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
     const {idCategoria} = useParams();
     
 
-    // const onAdd = (cant) => {
-    //     console.log(cant);
-    // }
-
     useEffect(() => {
-        if (idCategoria) {	
-            getFetch
-            .then(res => {
-                setProductos(res.filter(producto => producto.categoria === idCategoria));
-            })
-            .catch(err => { console.log(err) })
-            .finally(() => setLoading(false));
-
-        }else {
-
-            getFetch
-            .then(res => {
-                setProductos(res);
-            })
-            .catch(err => { console.log(err) })
-            .finally(() => setLoading(false));
-        }
-        }, [idCategoria])     
+        getItemList(idCategoria)
+        .then((result) => {
+            const status = result.status;
+            const productos = result.items;
+            if (status === 'success') {
+                setProductos(productos);
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        })
+        .finally(() => {setLoading(false)})
+    }, [idCategoria])     
 
 
 
     return (
-        <div>
-            <h1>{greeting}</h1>
-            {loading ? <h1>Cargando...</h1> : <ItemList productos={productos}/>}
-
-            {/* <ItemCount stock={5} initial={1} onAdd={onAdd} /> */}
-
-            
+        <div className="container">
+            {loading ? <Loading/> : productos && <ItemList productos={productos}/>}
         </div>
     );
 }

@@ -1,23 +1,25 @@
-import React from 'react';
-import { getFetch } from '../../utils/Mock';
+// import { getFetch } from '../../utils/Mock';
 import {useState, useEffect} from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
+import Loading from '../../utils/Loading';
+import { getItemById } from '../../services/Firebase';
 
-const ItemDetailContainer = ({greeting}) => {
+
+const ItemDetailContainer = () => {
     const [item, setItem] =useState({}); //<--ojo que solo pasa un objeto
     const [loading, setLoading] = useState(true);
     const {idProducto} = useParams();
 
     useEffect(() => {
         if (idProducto) {	
-            // console.log('idProducto', idProducto);
-            // console.log(typeof idProducto);
-            getFetch
-            .then(res => {
-                const itemFiltrado = res.filter(producto => producto.id === parseInt(idProducto));
-                // console.log(itemFiltrado);
-                setItem(itemFiltrado[0]);
+            getItemById(idProducto)
+            .then(result => {
+                const status = result.status;
+                const producto = result.item;
+                if (status === 'success') {
+                    setItem(producto); 
+                }
             })
             .catch(err => { console.log(err) })
             .finally(() => setLoading(false));
@@ -27,7 +29,7 @@ const ItemDetailContainer = ({greeting}) => {
     
     return (
         <div className="container">
-            {loading ? <h1>Cargando Detalle Item...</h1> : item && <ItemDetail item={item} />}
+            {loading ? <Loading/> : item && <ItemDetail item={item} />}
         </div>
     );
 }

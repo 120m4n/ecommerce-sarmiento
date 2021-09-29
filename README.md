@@ -22,4 +22,5 @@ El nombre de categoria permite agrupar los productos y generar los grupos de nav
 
 -   [react-bootstrap](https://react-bootstrap.github.io/) : para agilizar el proceso de maquetado.
 -   [react-router-dom](https://reactrouter.com//) : para manejar el routing de los productos e integracion dentro de la spa .
+-   [firebase](https://console.firebase.google.com/): para automatizar la api de la spa
 

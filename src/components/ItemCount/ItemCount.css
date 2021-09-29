@@ -1,8 +1,14 @@
-/* .body {
-    margin: 0 0;
-    padding: 0 0;
-    box-sizing: border-box;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap');
+
+body {
+    /* color: #333; */
+    font-family: 'Nunito','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-style: normal;
+    /* font-weight: 400; */
+    line-height: 1.42857143;
+    font-size: 1.4rem;
+}
+
 .item__container{
     display: inline-flex;
     width: 60%;
@@ -31,4 +37,57 @@
     text-align: center;
     line-height: 38px;
     vertical-align: middle;
+}
+.item__text{
+    text-align: center;
+}
+
+html .product-add-form {
+    width: 230px;
+    /* position: absolute;
+    top: 0;
+    right: 0; */
+    background: #f2f2f2;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.stock.available {
+    background: #fff url("disponible-min.png") no-repeat 12px center/20px;
+    color: #4db350;
+    padding: 4px 20px 4px 40px;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid #4db350;
+    width: auto;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+#product_add_cart{
+    font-size: 15px;
+}
+
+#product_add_cart a{
+    text-decoration: none;
+}
+#product_add_cart .btn{
+    font-size: 15px;
+}
+
+.product-title h1{
+    font-family: 'Nunito', sans-serif;
+    line-height: 24px;
+    font-size: 24px;
+    font-weight: 900;
+    color: #333;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.product-details p{
+    color: #777;
+    font-size: 15px;
 }

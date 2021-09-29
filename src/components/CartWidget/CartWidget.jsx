@@ -11,7 +11,7 @@ function CartWidget({count}) {
 
     return (
         <>
-            <Link to={totalItemCart > 0 ? "/cart": "#"}>
+            <Link to={totalItemCart() > 0 ? "/cart": "#"}>
                 <img width="30" src={cart_logo} alt='logotipo shoppingcart' />
                 <span className='indicator__count indicator__count--active'>{totalItemCart()}</span>
             </Link>

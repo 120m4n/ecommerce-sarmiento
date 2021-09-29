@@ -22,14 +22,14 @@ const ItemCount = ({stock, initial, onAdd}) => {
     }
 
     return (
-        <div className="item__container">
-            <p className="item__text">itemName</p>
+        <div className="item__container product-add-form">
+            <p className="item__text">Cantidad</p>
             <div className="item__selection">
-                <button className="btn btn-primary btn-size" onClick={handleRemove}>-</button>
+                <button className="btn btn-outline-primary btn-size" onClick={handleRemove}>-</button>
                 <div className="item__number">{count}</div>
-                <button className="btn btn-primary btn-size" onClick={handleAdd}>+</button>
+                <button className="btn btn-outline-primary btn-size" onClick={handleAdd}>+</button>
             </div>
-           <button className="btn btn-primary" onClick={handleAddToCart}>Añadir al carrito</button>
+            <button className="btn btn-outline-primary" onClick={handleAddToCart}><span><i className="fas fa-shopping-cart"></i></span> Añadir al carrito</button>
         </div>
     );
 }
