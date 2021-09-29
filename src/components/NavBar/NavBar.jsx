@@ -29,9 +29,7 @@ function NavBar(props) {
                         <Nav.Link as={Link} to="/categoria/comida">Comida</Nav.Link>
                         <Nav.Link as={Link} to="/categoria/juguetes">Juguetes</Nav.Link>
                     </Nav>
-                    <Link to="/cart">
-                        <CartWidget count={4} />
-                    </Link>
+                    <CartWidget/>
                 </Container>
             </Navbar>   
         </>

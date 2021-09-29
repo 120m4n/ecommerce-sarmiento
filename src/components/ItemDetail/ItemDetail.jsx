@@ -1,24 +1,35 @@
-import React from 'react';
+import {useState, useContext} from 'react';
 import ItemCount from '../ItemCount/ItemCount';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../../context/CartContext'
 
-const InputCount = () => {
+const InputCount = ({totalProductos, onClick}) => {
     
     return (
-        <Link to={`/cart/`}>
-            <button className="btn btn-outline-primary" onClick={()=> {console.log('cart')}}>Terminar mi Compra </button>
-        </Link>
+        <>
+            <Link to={`/cart/`}>
+                <button className="btn btn-success" onClick={()=> {console.log('cart')}}>Terminar Compra </button>
+            </Link>
+            <button className="btn btn-outline-primary" onClick={onClick}>Editar compra</button>
+            <p>items en carrito: {totalProductos} </p>
+        </>
     );
 }
 
 const ItemDetail = ({item}) => {
-    const [itemsCart, setItemsCart] = React.useState(0);
-    const [inCart, setinCart] = React.useState(false);
+    // const [itemsCart, setItemsCart] = React.useState(0);
+    const { isInCart, getQuantity, addItem } = useContext(CartContext);
+    const [inCart, setinCart] = useState(isInCart(item.id));
 
     const handleOnAdd = (value) => {
         setinCart(true);
-        setItemsCart(itemsCart + 1);
+        // setItemsCart(itemsCart + 1);
+        addItem(item, value);
     };
+
+    const handleRestart = () => {
+        setinCart(false);
+    }
 
     return (
 
@@ -31,9 +42,9 @@ const ItemDetail = ({item}) => {
                 </div>
                 <div>
                 {   inCart ? 
-                    <InputCount /> 
+                    <InputCount totalProductos={getQuantity(item.id)} onClick={handleRestart}/> 
                     :
-                    <ItemCount stock={5} initial={1} onAdd={handleOnAdd} />
+                    <ItemCount stock={5} initial={getQuantity(item.id)} onAdd={handleOnAdd} />
                  }
                 </div>
 

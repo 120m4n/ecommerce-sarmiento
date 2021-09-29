@@ -6,37 +6,39 @@ import CartWidget from "./components/CartWidget/CartWidget";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer"
 import Cart from "./components/Cart/Cart.jsx"
-
+import { CartProvider } from './context/CartContext'
 
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <header className="App-header">
-          <Navbar logo={logo}>
-            <CartWidget count={4} />
-          </Navbar>
-        </header>
-        <Switch>
-          <Route exact path="/" >
-            <ItemListContainer />
-          </Route>
-          <Route  path="/categoria/:idCategoria">
-            <ItemListContainer/>
-          </Route> 
+    <CartProvider>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <Navbar logo={logo}>
+              <CartWidget count={4} />
+            </Navbar>
+          </header>
+          <Switch>
+            <Route exact path="/" >
+              <ItemListContainer />
+            </Route>
+            <Route  path="/categoria/:idCategoria">
+              <ItemListContainer/>
+            </Route> 
 
-          <Route  path="/item/:idProducto">
-            <ItemDetailContainer />
-          </Route>
+            <Route  path="/item/:idProducto">
+              <ItemDetailContainer />
+            </Route>
 
-          <Route  path="/cart">
-            <Cart/>
-          </Route>
+            <Route  path="/cart">
+              <Cart/>
+            </Route>
 
-        </Switch>
-      </div>
-    </Router>
+          </Switch>
+        </div>
+      </Router>
+    </CartProvider>
   );
 }
 
