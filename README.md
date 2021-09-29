@@ -1,4 +1,4 @@
-proyecto de e-commerce para curso de react de Coder House
+## proyecto de e-commerce para curso de react de Coder House
 
 Simula una tienda de insumos para gatos en un SPA (Single Page Application), mediante la tecnologia React-Route. 
 
