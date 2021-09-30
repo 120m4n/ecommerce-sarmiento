@@ -7,6 +7,7 @@ import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer"
 import Cart from "./components/Cart/Cart.jsx"
 import { CartProvider } from './context/CartContext'
+import NotFound from './components/NotFound/NotFound.jsx'
 
 
 function App() {
@@ -33,6 +34,9 @@ function App() {
 
             <Route  path="/cart">
               <Cart/>
+            </Route>
+            <Route path="*">
+              <NotFound description="Pagina no encontrada" />
             </Route>
 
           </Switch>
