@@ -10,11 +10,11 @@ El nombre de categoria permite agrupar los productos y generar los grupos de nav
 
 ## Clonar el proyecto e instalar librerias con
 
-### `npm install`
+### `yarn install`
 
 ## Para correr el proyecto
 
-### `npm start`
+### `yarn start`
 
 ![Alt Text](./entrega_intermedia.gif)
 

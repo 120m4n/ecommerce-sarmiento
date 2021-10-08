@@ -19,7 +19,13 @@ const InputCount = ({totalProductos, onClick}) => {
                 <button className="d-block btn btn-outline-primary mt-3">Seguir Comprando</button>
             </Link>
             <div className="d-block mt-3">
-                <p>Hay <strong>{totalProductos} Productos</strong> en tu carrito </p>
+                {
+                   totalProductos> 1?
+                        <p>Ya tienes <strong>{totalProductos} Productos</strong> de estos en tu carrito </p>
+                    :
+                        <p>Se agregó <strong>{totalProductos} Producto</strong> a tu carrito </p>
+                    
+                }
                 <p>Subtotal del carrito: <strong>$0.000</strong></p>
             </div>
 

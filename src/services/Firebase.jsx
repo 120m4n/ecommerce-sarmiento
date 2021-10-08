@@ -61,3 +61,26 @@ export const getItemById = async (id) => {
   }
   return response; 
 }
+
+export const saveOrder = async (order) => {
+  let response = {status: "", orderId: ""};
+
+  const db = firebase.firestore(app);
+
+  //todo update order items stock
+  
+  const ordersCollection = db.collection("orders");
+  try {
+      const querySnapshot = await ordersCollection.add(order);
+      console.log(querySnapshot);
+      if (!querySnapshot.id) {
+          response.status = 'fail';
+      } else {
+          response.status = 'success';
+          response.orderId = querySnapshot.id;
+      }
+  }catch(e){
+      response.status = 'fail';
+  }
+  return response;
+}

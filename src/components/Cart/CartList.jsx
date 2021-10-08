@@ -43,6 +43,12 @@ const CartList = () => {
                 <Col xs="auto">
                     <h4>Total: $ {totalPriceCart()}</h4>
                 </Col>
+                <Col xs="auto">
+                    <Link to={"/checkout"}>
+                        <Button variant="success" disabled={cart.length > 0 ? false : true }>
+                        Procesar Pedido </Button>
+                    </Link>
+                </Col>
 
                 <Col xs="auto">
                     <Button variant="danger" disabled={cart.length > 0 ? false : true }

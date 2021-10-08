@@ -1,13 +1,10 @@
 import logo from "./assets/logo_aria.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch} from "react-router-dom";
 import Navbar from "./components/NavBar/NavBar";
 import CartWidget from "./components/CartWidget/CartWidget";
-import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
-import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer"
-import Cart from "./components/Cart/Cart.jsx"
 import { CartProvider } from './context/CartContext'
-import NotFound from './components/NotFound/NotFound.jsx'
+import Routes from './components/Routes/Routes.js';
 
 
 function App() {
@@ -17,28 +14,11 @@ function App() {
         <div className="App">
           <header className="App-header">
             <Navbar logo={logo}>
-              <CartWidget count={4} />
+              <CartWidget/>
             </Navbar>
           </header>
           <Switch>
-            <Route exact path="/" >
-              <ItemListContainer />
-            </Route>
-            <Route  path="/categoria/:idCategoria">
-              <ItemListContainer/>
-            </Route> 
-
-            <Route  path="/item/:idProducto">
-              <ItemDetailContainer />
-            </Route>
-
-            <Route  path="/cart">
-              <Cart/>
-            </Route>
-            <Route path="*">
-              <NotFound description="Pagina no encontrada" />
-            </Route>
-
+            {Routes}
           </Switch>
         </div>
       </Router>

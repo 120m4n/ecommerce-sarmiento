@@ -6,12 +6,10 @@
 	display: flex;
 	flex-direction: column;
 }
-.notfound__container h2 {
-	color: white;
-}
+
 .notfound__container button {
 	margin-top: 10px;
-	color: white;
+	/* color: white; */
 	background-color: #e43f5a;
 	cursor: pointer;
 	width: 100%;

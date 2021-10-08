@@ -4,8 +4,8 @@ import CartList from './CartList.jsx';
 import EmptyCart from './EmptyCart.jsx';
 
 const Cart = () => {
-    const {cart,totalItemCart} = useContext(CartContext);
-    console.log(cart);
+    const {cart} = useContext(CartContext);
+    // console.log(cart);
     return (
         <div className="container">
             {
