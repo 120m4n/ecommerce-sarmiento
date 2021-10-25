@@ -83,7 +83,9 @@ const ItemDetail = ({item}) => {
                     {   inCart ? 
                         <InputCount totalProductos={getQuantity(item.id)} onClick={handleRestart}/> 
                         :
-                        <ItemCount stock={5} initial={getQuantity(item.id)} onAdd={handleOnAdd} />
+                        <ItemCount stock={5} initial={getQuantity(item.id)}
+                            onAdd={handleOnAdd} price_include={item.price}
+                            price_exclude={Math.floor(item.price / 1.19) } />
                     }
                 </div>
             </div>  

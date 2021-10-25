@@ -91,3 +91,56 @@ html .product-add-form {
     color: #777;
     font-size: 15px;
 }
+
+
+html .price-box{
+    text-align: center;
+    width: 100%;
+}
+
+html .price-box .price-container:before {
+    content: "Precio";
+    display: block;
+    color: #333;
+    font-weight: 400;
+    margin: 0;
+    font-size: 14px;
+}
+
+.price-excluding-tax,
+.price-including-tax {
+    display: block;
+    white-space: nowrap;
+}
+
+html .price-wrapper.price-excluding-tax:before {
+    content: "Precio antes de IVA";
+    display: block;
+    font-size: 12px;
+    color: #555;
+}
+.price-including-tax,
+.price-excluding-tax {
+    display: block;
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.price-container .price-including-tax+.price-excluding-tax {
+    margin-top: 5px;
+}
+
+html .product-add-form .price-container .price {
+    color: #4db350;
+    font-size: 36px;
+    font-weight: 800;
+}
+
+.price-container .price-including-tax+.price-excluding-tax,
+.price-container .weee,
+.price-container .price-including-tax+.price-excluding-tax .price,
+.price-container .weee .price,
+.price-container .weee+.price-excluding-tax:before,
+.price-container .weee+.price-excluding-tax .price {
+    font-size: 1.1rem;
+}

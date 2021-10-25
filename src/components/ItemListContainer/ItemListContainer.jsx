@@ -34,7 +34,7 @@ const ItemListContainer = () => {
 
 
     return (
-        <div className="container">
+        <div className="main container">
             {loading ? <Loading/> : productos && <ItemList productos={productos}/>}
         </div>
     );
