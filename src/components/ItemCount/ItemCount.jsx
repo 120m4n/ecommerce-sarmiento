@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import './ItemCount.css';
+import { formatEuro } from '../../utils/CashFormat'
+
 
 const ItemCount = ({stock, initial, onAdd, price_include, price_exclude}) => {
     const [count, setCount] = useState(initial);
@@ -29,14 +31,15 @@ const ItemCount = ({stock, initial, onAdd, price_include, price_exclude}) => {
                 <div className="item__number">{count}</div>
                 <button className="btn btn-outline-primary btn-size" onClick={handleAdd}>+</button>
             </div>
-            <button className="btn btn-outline-primary" onClick={handleAddToCart}><span><i className="fas fa-shopping-cart"></i></span> Añadir al carrito</button>
+            <button className="btn btn-outline-primary" onClick={handleAddToCart} disabled={stock>0?false:true}>
+                <span><i className="fas fa-shopping-cart"></i></span> Añadir al carrito</button>
             <div className="price-box">
                 <span className="price-container">
                     <span className="price-wrapper price-including-tax">
-                        <span class="price">$&nbsp;{price_include}</span>
+                        <span className="price">$&nbsp;{formatEuro(price_include)}</span>
                     </span>
                     <span className="price-wrapper price-excluding-tax">
-                        <span className="price">$&nbsp;{price_exclude}</span>
+                        <span className="price">$&nbsp;{formatEuro(price_exclude)}</span>
                     </span>
                     
                 </span>

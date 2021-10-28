@@ -72,7 +72,7 @@ export const saveOrder = async (order) => {
   const ordersCollection = db.collection("orders");
   try {
       const querySnapshot = await ordersCollection.add(order);
-      console.log(querySnapshot);
+      // console.log(querySnapshot);
       if (!querySnapshot.id) {
           response.status = 'fail';
       } else {
@@ -83,4 +83,25 @@ export const saveOrder = async (order) => {
       response.status = 'fail';
   }
   return response;
+}
+
+//get value of order by id
+export const getOrderValue = async (id) => {
+  let response = {status: "", value: 0};
+
+  const db = firebase.firestore(app);
+  const order = db.collection('orders').doc(id);
+  try {
+    const querySnapshot = await order.get();
+    if (!querySnapshot.exists) {
+        response.status = 'empty';
+    } else {
+        response.status = 'success';
+        response.value = querySnapshot.data().total;
+    }
+  }catch(e){
+      response.status = "fail";
+  }
+  return response; 
+  
 }

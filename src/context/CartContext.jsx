@@ -6,6 +6,7 @@ const initialCart = JSON.parse(localStorage.getItem('cart')) || []
 
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState(initialCart)
+	const [orderId, setOrderId] = useState(null)
 
 
 	useEffect(() => {
@@ -41,7 +42,7 @@ export const CartProvider = ({ children }) => {
 	const clearCart = () => setCart([])
 	return (
 		<CartContext.Provider
-			value={{ cart, addItem, isInCart, removeItem, clearCart, getQuantity, totalItemCart, totalPriceCart }}
+			value={{ cart, addItem, isInCart, removeItem, clearCart, getQuantity, totalItemCart, totalPriceCart, setOrderId, orderId, setCart }}
 		>
 			{children}
 		</CartContext.Provider>

@@ -5,9 +5,8 @@ import EmptyCart from './EmptyCart.jsx';
 
 const Cart = () => {
     const {cart} = useContext(CartContext);
-    // console.log(cart);
     return (
-        <div className="container">
+        <div className="container d-flex">
             {
                 cart.length === 0 ?
                 <EmptyCart/>

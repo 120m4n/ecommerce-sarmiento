@@ -1,147 +1,152 @@
 import firebase from "firebase";
-import 'firebase/firestore';
-import {saveOrder} from '../../services/Firebase';
+import "firebase/firestore";
+import { saveOrder } from "../../services/Firebase";
+import { useState, useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useHistory } from 'react-router-dom';
 
-import {Form, Button, Row, Col} from 'react-bootstrap';
-
-import { useState, useContext} from 'react';
-import { CartContext } from '../../context/CartContext';
+import "./Checkout.css";
 
 const Checkout = () => {
-    const {cart, totalPriceCart, clearCart} = useContext(CartContext);
-	const [validated, setValidated] = useState(false);
-    const [orderId, setOrderId] = useState('');
-    const [formData, setFormData]   = useState({});
+  const { cart, totalPriceCart, setOrderId } = useContext(CartContext);
+	const [formData, setFormData] = useState({});
+	const history = useHistory()
 
+  function createOrder() {
+    // if (!validated) return;
 
+    let newOrder = {
+      buyer: formData,
+      date: firebase.firestore.Timestamp.fromDate(new Date()),
+      total: totalPriceCart(),
+    };
 
-    // function validationForm(){
-    //     return true;
-    // }
-    function createOrder(){
-        if (!validated) return;
+    const items = cart.map((cartItem) => {
+      const id = cartItem.item.id;
+      const title = cartItem.item.title;
+      const price = cartItem.item.price * cartItem.quantity;
+      const quantity = cartItem.quantity;
 
-        let newOrder  = {
-            buyer: formData,
-            date : firebase.firestore.Timestamp.fromDate(new Date()),
-            total : totalPriceCart()
-        };
+      return { id, title, price, quantity };
+    });
+    newOrder.items = items;
 
-        const items = cart.map(cartItem => {
-            const id = cartItem.item.id;
-            const title = cartItem.item.title;
-            const price = cartItem.item.price * cartItem.quantity;
-			const quantity = cartItem.quantity;
-
-            return {id, title, price, quantity};
-        })
-        newOrder.items = items;
-
-        console.log(newOrder);
-
-        saveOrder(newOrder)
-        .then(res =>{
-			if (res.status === "success") {
+    saveOrder(newOrder)
+      .then((res) => {
+        if (res.status === "success") {
 			setOrderId(res.orderId);
-			clearCart();
-			console.log(res);
+			history.push('/order')
+
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  return (
+    <div className="container-form">
+      <Formik
+        initialValues={{
+          name: "abelardo",
+          email: "be@gmail.com",
+          email2: "be@gmail.com",
+          phone: "1234567890",
+        }}
+        validate={(values) => {
+          const errors = {};
+          if (!values.name) {
+            errors.name = "Required";
+          }
+          if (!values.email) {
+            errors.email = "Required";
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          ) {
+            errors.email = "Direccion de email invalida";
+          }
+          if (!values.email2) {
+            errors.email2 = "Required";
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email2)
+          ) {
+            errors.email2 = "Direccion de email invalida";
 			}
-        })
-        .catch(err =>{
-            console.log(err);
-        })
+			
 
-    }
-
-    function handleOnChange(e) {
-		
-        setFormData({
-            ...formData,
-            [e.target.name] : e.target.value
-        })
-
-    }
-
-	const handleSubmit = (event) => { 
-		event.preventDefault();
-		// console.log(event);
-
-		const form = event.currentTarget;
-		if (form.checkValidity() === true) {
-			setValidated(true);	
-		//   event.stopPropagation();
-		}else{
-			setValidated(false);
-
-		}
-	
-		
-		createOrder();
-	  };
-
-    return (
-        <div className="container-form">
-			{orderId ? (
-				<Form.Group>
-					<Form.Label>Orden Registrada:</Form.Label>
-					<Form.Control type="text" placeholder='' value={orderId || ''} readOnly/>
-				</Form.Group>) : (
-
-				<Form validated={validated} 
-			onSubmit={handleSubmit}
-			onChange={handleOnChange}>
-			<Row className="mb-3">
-				<Form.Group as={Col} controlId="validationCustom01">
-				<Form.Label>Nombre completo</Form.Label>
-				<Form.Control
-					required
-					name="name"
-					type="text"
-					placeholder="Nombre completo"
-				/>
-				<Form.Control.Feedback type="invalid">
-				El usuario tiene que tener minimo 4 digitos.
-				</Form.Control.Feedback>
-				</Form.Group>
-			</Row>
-			<Row className="mb-3">
-				<Form.Group as={Col}  controlId="validationCustom02">
-				<Form.Label>Número de contacto</Form.Label>
-				<Form.Control
-					required
-					type="tel"
-					name="phone"
-					pattern="[0-9]*"
-					placeholder="1234567890"
-				/>
-				<Form.Control.Feedback type="invalid">
-					No telefono valido.
-				</Form.Control.Feedback>
-				</Form.Group>
-			</Row>
-			<Row className="mb-3">
-				<Form.Group as={Col} controlId="validationCustom03">
-				<Form.Label>Email</Form.Label>
-				<Form.Control 
-				type="email" 
-				placeholder="Email"
-				name="email"
-				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
-				required />
-				<Form.Control.Feedback type="invalid">
-					No es un email valido.
-				</Form.Control.Feedback>
-				</Form.Group>
-			</Row>
-
-			<Button type="submit">Finalizar compra</Button>
-			</Form>
-			)}
-
-        </div>
-    
-
-    );
-}
+			if (!values.phone) {
+				errors.phone = "Required";
+			} else if (
+				!/^[0-9]{10}$/i.test(values.phone)
+			) {
+				errors.phone = "El telefono debe contener 10 digitos";
+			}
+          return errors;
+        }}
+        onSubmit={(values) => {
+			setFormData(values);
+			createOrder();
+        }}
+      >
+        {({ errors }) => (
+          <Form className="formulario">
+            <label htmlFor="name">Nombre y apellido</label>
+            <Field
+              type="text"
+              autoComplete="off"
+              id="name"
+              name="name"
+              placeholder="Nombre y apellido"
+            />
+            <ErrorMessage
+              name="name"
+              component={() => <div className="error">{errors.name}</div>}
+            />
+            <label htmlFor="phone">Telefono</label>
+            <Field
+              type="text"
+              autoComplete="off"
+              id="phone"
+              name="phone"
+              placeholder="1234567890"
+					  />
+			<ErrorMessage
+              name="phone"
+              component={() => <div className="error">{errors.phone}</div>}
+            />
+            <label htmlFor="email">Email</label>
+            <Field
+              type="text"
+              autoComplete="off"
+              id="email"
+              name="email"
+              placeholder="email@email.com"
+			/>
+			<ErrorMessage
+              name="email"
+              component={() => <div className="error">{errors.email}</div>}
+            />
+            <label className="form__label" htmlFor="email2">
+              Repetir Email
+            </label>
+            <Field
+              type="text"
+              autoComplete="off"
+              id="email2"
+              name="email2"
+              placeholder="email@email.com"
+					  />
+			<ErrorMessage
+              name="email2"
+              component={() => <div className="error">{errors.email2}</div>}
+            />
+            <button type="submit">Finalizar compra</button>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
 
 export default Checkout;

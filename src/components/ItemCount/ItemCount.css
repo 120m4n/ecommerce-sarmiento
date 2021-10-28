@@ -6,7 +6,6 @@ body {
     font-style: normal;
     /* font-weight: 400; */
     line-height: 1.42857143;
-    font-size: 1.4rem;
 }
 
 .item__container{
@@ -65,6 +64,26 @@ html .product-add-form {
     display: inline-block;
     margin: 10px 0;
 }
+
+.stock.available,
+.stock.unavailable {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.stock.unavailable {
+    /* background: #fff url("disponible-min.png") no-repeat 12px center/20px; */
+    color: #da3107;
+    padding: 4px 20px 4px 40px;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid #da3107;
+    width: auto;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+
 
 #product_add_cart{
     font-size: 15px;
