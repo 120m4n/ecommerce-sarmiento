@@ -30,7 +30,7 @@ Abrir [http://localhost:3006](http://localhost:3006)
 
 ## Procesar pedido
 
-![Alt Text](https://res.cloudinary.com/cloudinary-120m4n/image/upload/v1635386702/procesar_pedido_zrjsru.gif)
+![Alt Text](https://res.cloudinary.com/cloudinary-120m4n/image/upload/v1635387719/procesar_pedido_i9os1b.gif)
 
 ## Persistencia de datos
 
