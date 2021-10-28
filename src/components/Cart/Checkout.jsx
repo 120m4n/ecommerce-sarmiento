@@ -49,10 +49,10 @@ const Checkout = () => {
     <div className="container-form">
       <Formik
         initialValues={{
-          name: "abelardo",
-          email: "be@gmail.com",
-          email2: "be@gmail.com",
-          phone: "1234567890",
+          name: "",
+          email: "",
+          email2: "",
+          phone: "",
         }}
         validate={(values) => {
           const errors = {};
@@ -78,9 +78,9 @@ const Checkout = () => {
 			if (!values.phone) {
 				errors.phone = "Required";
 			} else if (
-				!/^[0-9]{10}$/i.test(values.phone)
+				!/^[0-9]{10,}$/i.test(values.phone)
 			) {
-				errors.phone = "El telefono debe contener 10 digitos";
+				errors.phone = "El telefono debe contener minimo 10 digitos";
 			}
           return errors;
         }}

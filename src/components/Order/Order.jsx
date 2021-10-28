@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
 import {Link, useHistory } from 'react-router-dom';
 import { getOrderValue } from '../../services/Firebase';
-import { formatEuro } from '../../utils/CashFormat';
+import { formatEuro, formatTax, formatIncludeTax } from '../../utils/CashFormat';
 
 const Order = () => {
     const { orderId, setCart, setOrderId } = useContext(CartContext);
@@ -35,15 +35,21 @@ const Order = () => {
 
     return (
         <>
-         	<div>
+         	<div className="container">
                 <h2>Gracias por tu compra</h2>
-                <div className="orden-datos ">
+                <div >
 				    <p>Puedes hacer seguimiento a tu compra con el siguiente numero de orden</p>
 				    <p>
 					    orden : <strong>{orderId}</strong>
 				    </p>
 				    <p>
-					    Total: <strong> $ {formatEuro(total)}</strong>
+					    SubTotal: <strong> $ {formatEuro(total)}</strong>
+                    </p>
+                    				    <p>
+					    Impuestos: <strong> $ {formatTax(total)}</strong>
+                    </p>
+                    				    <p>
+					    Total a Pagar: <strong> $ {formatIncludeTax(total)}</strong>
                     </p>
                 </div>
             <Link className="mt-3" to={`/`}>

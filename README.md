@@ -14,7 +14,31 @@ El nombre de categoria permite agrupar los productos y generar los grupos de nav
 
 ### `yarn start`
 
-![Alt Text](./entrega_intermedia.gif)
+Abrir [http://localhost:3006](http://localhost:3006)
+
+## Vista Principal
+
+![Alt Text](https://res.cloudinary.com/cloudinary-120m4n/image/upload/v1635386703/navegacion_general_gc0mvv.gif)
+
+## Detalle de producto
+
+![Alt Text](https://res.cloudinary.com/cloudinary-120m4n/image/upload/v1635386701/detalle_producto_src7te.gif)
+
+## Agregar a Carrito
+
+![Alt Text](https://res.cloudinary.com/cloudinary-120m4n/image/upload/v1635386702/agregar_a_carrito_cftafh.gif)
+
+## Procesar pedido
+
+![Alt Text](https://res.cloudinary.com/cloudinary-120m4n/image/upload/v1635386702/procesar_pedido_zrjsru.gif)
+
+## Persistencia de datos
+
+![Alt Text](https://res.cloudinary.com/cloudinary-120m4n/image/upload/v1635386702/persistencia_datos_ruj2zu.gif)
+
+## Ruta no encontrada
+
+![Alt Text](https://res.cloudinary.com/cloudinary-120m4n/image/upload/v1635387197/ruta_no_encontrada_vfxvwn.gif)
 
 # Librerias Extras :
 

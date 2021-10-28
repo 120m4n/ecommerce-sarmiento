@@ -20,9 +20,7 @@ const routes = [
   <Route
     key={7}
     path="*"
-    component={(props) => (
-      <NotFound {...props} description="Pagina no encontrada" />
-    )}
+    component={(props) => <NotFound {...props} description="Error 404" />}
   />,
 ];
 
